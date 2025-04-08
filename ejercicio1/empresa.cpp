@@ -1,19 +1,26 @@
-// filepath: /home/emiag/TP1/ejercicio1/empresa.cpp
 #include "empresa.hpp"
 
-std::shared_ptr<Departamento> Empresa::getDeptByName(std::string name) {
-    for (const auto& departamento : departamentos) {
-        if (departamento->getNombre() == name) {
-            return departamento;
+
+void Empresa::agregarDepartamento(std::shared_ptr<Departamento> nuevo_departamento) {
+    departamentos.push_back(nuevo_departamento);
+}
+
+
+std::shared_ptr<Departamento> Empresa::getDeptByName(std::string name){
+    for (auto i = departamentos.begin(); i != departamentos.end(); i++) {
+        if ((*i)->nombre == name) {
+            return *i;
         }
     }
-    return nullptr; // Return nullptr if not found
+    return nullptr;
 }
 
 std::vector<std::string> Empresa::getDeptNames() {
-    std::vector<std::string> names;
-    for (const auto& departamento : departamentos) {
-        names.push_back(departamento->getNombre());
+    std::vector<std::string> deptNames{};
+
+    for (auto i : departamentos) {
+        deptNames.push_back(i->nombre);
     }
-    return names;
+
+    return deptNames;
 }

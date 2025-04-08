@@ -1,16 +1,19 @@
-// filepath: /home/emiag/TP1/ejercicio1/manager.cpp
-#include "manager.hpp"
+#pragma once
 
-bool Manager::updateBono(float valor) {
-    bono = valor;
-    return true;
-}
+#include <string>
+#include <vector>
+#include <memory>
 
-float Manager::getBono() {
-    return bono;
-}
+#include "empleado.hpp"
 
-bool Manager::setLevel(std::string new_level) {
-    level = new_level;
-    return true;
-}
+class Manager : public Empleado {
+    protected:
+        float bono;
+        std::string level;
+    public: 
+        bool updateBono(float new_bono);
+        float getBono();
+        bool setLevel(std::string new_level);
+        
+        ~Manager() = default;
+};

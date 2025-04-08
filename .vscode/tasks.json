@@ -7,10 +7,18 @@
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
-                "${file}",
+                "/home/emiag/TP1/ejercicio1/main.cpp",
+                "/home/emiag/TP1/ejercicio1/centralregional.cpp",
+                "/home/emiag/TP1/ejercicio1/departamento.cpp",
+                "/home/emiag/TP1/ejercicio1/empleado.cpp",
+                "/home/emiag/TP1/ejercicio1/empresa.cpp",
+                "/home/emiag/TP1/ejercicio1/entidadorganizativa.cpp",
+                "/home/emiag/TP1/ejercicio1/manager.cpp",
                 "-o",
-                "${workspaceFolder}/bin/${fileBasenameNoExtension}",
+                "/home/emiag/TP1/bin/main_ejercicio1",
                 "-Wextra",
+                "-Wall",
+                "-Werror",
                 "-std=c++23"
             ],
             "options": {

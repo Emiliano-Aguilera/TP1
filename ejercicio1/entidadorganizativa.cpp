@@ -1,14 +1,13 @@
-// filepath: /home/emiag/TP1/ejercicio1/entidadorganizativa.cpp
 #include "entidadorganizativa.hpp"
 
-int EntidadOrganizativa::contarSubentidades() const {  
+int EntidadOrganizativa::contarSubentidades() const {
     return subentidades.size();
 }
 
-std::string EntidadOrganizativa::getNombre() const {
-    return nombre;
+void EntidadOrganizativa::agregarSubentidad(std::shared_ptr<EntidadOrganizativa> entidad) {
+    std::cerr << "Funcion no implementada, no tiene sentido." << entidad;
 }
 
-void EntidadOrganizativa::agregarSubentidad(std::shared_ptr<EntidadOrganizativa> entidad){
-    subentidades.push_back(entidad);
+EntidadOrganizativa::~EntidadOrganizativa() {
+    // TODO Implementación vacía del destructor virtual puro
 }

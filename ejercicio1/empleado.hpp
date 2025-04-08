@@ -1,15 +1,18 @@
-// filepath: /home/emiag/TP1/ejercicio1/empleado.cpp
-#include "empleado.hpp"
+#pragma once
 
-int Empleado::getAntiguedad() {
-    return antiguedad;
-}
+#include <string>
 
-bool Empleado::updateSalario(float new_salario) {
-    salario = new_salario;
-    return true;
-}
-
-float Empleado::getSalario() {
-    return salario;
-}
+class Empleado {
+    protected:
+        int antiguedad;
+        float salario;
+    public:
+        std::string nombre;
+        std::string puesto;
+    public:
+        int getAntiguedad();
+        bool updateSalario(float new_salario);
+        float getSalario();
+        
+        ~Empleado() = default;
+};

@@ -1,4 +1,11 @@
-// filepath: /home/emiag/TP1/ejercicio1/gerentemedio.cpp
-#include "gerentemedio.hpp"
+#pragma once
 
-// This file is intentionally left blank.
+#include <string>
+#include <vector>
+#include <memory>
+
+#include "manager.hpp"
+
+class GerenteMedio : public Manager {
+    
+};

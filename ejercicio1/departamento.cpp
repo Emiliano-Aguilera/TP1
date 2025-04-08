@@ -1,24 +1,22 @@
-// filepath: /home/emiag/TP1/ejercicio1/departamento.cpp
 #include "departamento.hpp"
 
-int Departamento::contarEmpleados() const {
+int Departamento::contarEmpleados() {
     return empleados.size();
 }
-
-std::vector<std::shared_ptr<Empleado>> Departamento::getEmployees() {
+std::vector<std::shared_ptr<Empleado>> Departamento::getEmpleados() {
     return empleados;
 }
-
 bool Departamento::contratarEmpleado(std::shared_ptr<Empleado> empleado) {
     empleados.push_back(empleado);
-    return true; // Assuming the hiring process is always successful
+    return true;
 }
 
 bool Departamento::despedirEmpleado(std::shared_ptr<Empleado> empleado) {
-    auto it = std::find(empleados.begin(), empleados.end(), empleado);
-    if (it != empleados.end()) {
-        empleados.erase(it);
-        return true; // Employee successfully fired
+    for (auto i = empleados.begin(); i != empleados.end(); i++) {
+        if (*i == empleado) {
+            empleados.erase(i);
+            return true;
+        }
     }
-    return false; // Employee not found
+    return false;
 }

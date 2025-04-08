@@ -1,24 +1,86 @@
-// filepath: /home/emiag/TP1/ejercicio1/centralregional.cpp
 #include "centralregional.hpp"
 
-int CentralRegional::getCantEmpleados() const {
+int CentralRegional::getCantEmpleados() {
     return cantEmpleados;
 }
 
-std::vector<std::string> CentralRegional::getEmpNames() const {
-    std::vector<std::string> empNames;
-    for (const auto& empresa : empresas) {
-        empNames.push_back(empresa.first); // Assuming the key is the name of the empresa
+std::vector<std::string> CentralRegional::getEmpNames() {
+    std::vector<std::string> nombres_empleados{};
+
+    for (auto eA : gerentesAlto) {
+        // Como son std::array y no std::vector, hay que verificar que el puntero sea valid
+        if (eA) {
+            nombres_empleados.push_back(eA->nombre);
+        }
+        else {
+            break;
+        }
     }
-    return empNames;
+
+    for (auto eM : gerentesMedio) {
+        if (eM) {
+            nombres_empleados.push_back(eM->nombre);
+        }
+        else {
+            break;
+        }
+    }
+
+    return nombres_empleados;
 }
 
-std::vector<GerenteAlto> CentralRegional::getGerentesAlto() const {
-    std::vector<GerenteAlto> gerentesAltoVec(gerentesAlto, gerentesAlto + sizeof(gerentesAlto) / sizeof(GerenteAlto));
-    return gerentesAltoVec;
+bool CentralRegional::agregarEmpresa(std::shared_ptr<Empresa> nueva_empresa) {
+    return empresas.emplace(nueva_empresa->nombre, nueva_empresa).second;
 }
 
-std::vector<GerenteMedio> CentralRegional::getGerentesMedio() const {
-    std::vector<GerenteMedio> gerentesMedioVec(gerentesMedio, gerentesMedio + sizeof(gerentesMedio) / sizeof(GerenteMedio));
-    return gerentesMedioVec;
+void CentralRegional::agregarGerenteAlto(std::shared_ptr<GerenteAlto> nuevo_gerente) {
+    if (iGerentesAlto < 5){
+        gerentesAlto.at(iGerentesAlto) = nuevo_gerente;
+        iGerentesAlto++;
+    } 
+    else {
+        throw std::invalid_argument("Ya no se pueden agregar gerentes altos, maximo 5.");
+    }
+}
+
+void CentralRegional::agregarGerenteMedio(std::shared_ptr<GerenteMedio> nuevo_gerente) {
+    if (iGerentesMedio < 20) {
+        gerentesMedio.at(iGerentesMedio) = nuevo_gerente;
+        iGerentesMedio++;
+    }
+    else {
+        throw std::invalid_argument("Ya no se pueden agregar gerentes medios, maximo 20");
+    }
+}
+
+bool CentralRegional::eliminarEmpresa(std::shared_ptr<Empresa> nueva_empresa) {
+    return empresas.erase(nueva_empresa->nombre);
+}
+
+void CentralRegional::eliminarGerenteAlto(std::shared_ptr<GerenteAlto> nuevo_gerente) {
+    if (iGerentesAlto > 0) {
+        gerentesAlto.at(iGerentesAlto) = nullptr;
+        iGerentesAlto--;
+    } 
+    else {
+        throw std::invalid_argument("No hay gerentes altos que eliminar.");
+    }
+}
+
+void CentralRegional::eliminarGerenteMedio(std::shared_ptr<GerenteMedio> nuevo_gerente) {
+    if (iGerentesMedio > 0) {
+        gerentesMedio.at(iGerentesMedio) = nullptr;
+        iGerentesMedio--;
+    }
+    else {
+        throw std::invalid_argument("Ya no se pueden agregar gerentes medios, maximo 20");
+    }
+}
+
+std::array<std::shared_ptr<GerenteAlto>, 5> CentralRegional::getGerentesAlto() {
+    return gerentesAlto;
+}
+
+std::array<std::shared_ptr<GerenteMedio>, 20> CentralRegional::getGerentesMedio() {
+    return gerentesMedio;
 }

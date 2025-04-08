@@ -1,15 +1,16 @@
-// filepath: /home/emiag/TP1/ejercicio1/empleado.cpp
 #include "empleado.hpp"
 
 int Empleado::getAntiguedad() {
     return antiguedad;
 }
-
 bool Empleado::updateSalario(float new_salario) {
-    salario = new_salario;
-    return true; // Assuming the update is always successful
+    if (new_salario >= 0) {
+        salario = new_salario;
+        return true;
+    } else {
+        return false;
+    }
 }
-
 float Empleado::getSalario() {
     return salario;
 }

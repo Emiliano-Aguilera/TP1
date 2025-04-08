@@ -1,14 +1,18 @@
-// filepath: /home/emiag/TP1/ejercicio1/entidadorganizativa.cpp
-#include "entidadorganizativa.hpp"
+#pragma once
 
-int EntidadOrganizativa::contarSubentidades() const {  
-    return subentidades.size();
-}
-
-std::string EntidadOrganizativa::getNombre() const {
-    return nombre;
-}
-
-void EntidadOrganizativa::agregarSubentidad(std::shared_ptr<EntidadOrganizativa> entidad){
-    subentidades.push_back(entidad);
-}
+#include <string>
+#include <vector>
+#include <memory>
+#include <iostream>
+// TODO para que sirve subentidades si es privado??, 
+// Para que quiero agregar subentidades a una clase que no puede ser instanciada si sus subclases implementan un metodo igual?
+class EntidadOrganizativa {
+    private:
+        std::vector<std::shared_ptr<EntidadOrganizativa>> subentidades;
+    public:
+        std::string nombre;
+    public:
+        void agregarSubentidad(std::shared_ptr<EntidadOrganizativa> entidad);
+        int contarSubentidades() const;
+        virtual ~EntidadOrganizativa() = 0;
+};

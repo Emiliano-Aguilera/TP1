@@ -1,24 +1,41 @@
-// filepath: /home/emiag/TP1/ejercicio1/centralregional.cpp
-#include "centralregional.hpp"
+#pragma once
 
-int CentralRegional::getCantEmpleados() const {
-    return cantEmpleados;
-}
+#include <memory>
+#include <string>
+#include <array>
+#include <map>
+#include <set>
+#include <iostream>
 
-std::vector<std::string> CentralRegional::getEmpNames() const {
-    std::vector<std::string> empNames;
-    for (const auto& empresa : empresas) {
-        empNames.push_back(empresa.first);
-    }
-    return empNames;
-}
+#include "entidadorganizativa.hpp"
+#include "gerentealto.hpp"
+#include "gerentemedio.hpp"
+#include "empresa.hpp"
 
-std::vector<GerenteAlto> CentralRegional::getGerentesAlto() const {
-    std::vector<GerenteAlto> gerentesAltoVec(std::begin(gerentesAlto), std::end(gerentesAlto));
-    return gerentesAltoVec;
-}
+class CentralRegional : public EntidadOrganizativa {
+    private:
+        int cantEmpleados;
+        int iGerentesAlto;
+        int iGerentesMedio;
+        
+        std::array<std::shared_ptr<GerenteAlto>, 5> gerentesAlto;
+        std::array<std::shared_ptr<GerenteMedio>, 20> gerentesMedio;
+        std::map<std::string, std::shared_ptr<Empresa>> empresas;
+    public:
+        std::set<std::string> paises;
+    public:
+        int getCantEmpleados();
+        std::vector<std::string> getEmpNames();
+        std::array<std::shared_ptr<GerenteAlto>, 5> getGerentesAlto();
+        std::array<std::shared_ptr<GerenteMedio>, 20> getGerentesMedio();
+        
+        bool agregarEmpresa(std::shared_ptr<Empresa> nueva_empresa);
+        void agregarGerenteAlto(std::shared_ptr<GerenteAlto> nuevo_gerente);
+        void agregarGerenteMedio(std::shared_ptr<GerenteMedio> nuevo_gerente);
 
-std::vector<GerenteMedio> CentralRegional::getGerentesMedio() const {
-    std::vector<GerenteMedio> gerentesMedioVec(std::begin(gerentesMedio), std::end(gerentesMedio));
-    return gerentesMedioVec;
-}
+        bool eliminarEmpresa(std::shared_ptr<Empresa> nueva_empresa);
+        void eliminarGerenteAlto(std::shared_ptr<GerenteAlto> nuevo_gerente);
+        void eliminarGerenteMedio(std::shared_ptr<GerenteMedio> nuevo_gerente);
+
+        ~CentralRegional() = default;
+};
