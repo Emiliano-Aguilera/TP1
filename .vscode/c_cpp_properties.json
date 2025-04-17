@@ -3,10 +3,9 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/**",
-                "${workspaceFolder}/headers",
-                "${workspaceFolder}/ejercicio_1",
-                "${workspaceFolder}/ejercicio_2"
+                "${workspaceFolder}/include/ejercicio_1/characters",
+                "${workspaceFolder}/include/ejercicio_1/weapons",
+                "${workspaceFolder}/include/ejercicio_2"
             ],
             "defines": [],
             "cStandard": "c17",

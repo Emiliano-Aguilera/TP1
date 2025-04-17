@@ -1,4 +1,4 @@
-#include "randomengine.hpp"
+#include "RandomEngine.hpp"
 
 // Devuelve la instancia
 RandomEngine& RandomEngine::Instance() {
@@ -9,11 +9,11 @@ RandomEngine& RandomEngine::Instance() {
 // Devuelve true o false segund la probabilidad dada
 bool RandomEngine::RandomBool(double probability) {
     std::bernoulli_distribution dist(probability);
-    return dist(engine);
+    return dist(m_mtEngine);
 }
 
 // Devuelve un int dentro del rango dado
 int RandomEngine::RandomInt(int min, int max) {
     std::uniform_int_distribution<int> dist(min, max);
-    return dist(engine);
+    return dist(m_mtEngine);
 }
